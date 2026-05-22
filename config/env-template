@@ -1,0 +1,31 @@
+# Hermes .env 模板（已脱敏）
+# ============================================================
+# 把这个文件复制到 ~/.hermes/.env 然后填入真实值
+# 千万不要 commit 真实 .env 到任何 git 仓库
+# ============================================================
+
+# ── 主模型 provider：火山引擎 Coding Plan ──
+# 申请：https://www.volcengine.com/product/ark （Coding Plan 套餐）
+# 重要：用 coding/v3 不要用 /v3
+VOLC_ARK_API_KEY=ark-xxxxxxxxxxxx-xxxxx
+
+# ── QQ 机器人 NapCat access token ──
+# 启 NapCat 后在配置里生成 → 同步到这里
+NAPCAT_ACCESS_TOKEN=set-your-napcat-token-here
+
+# ── Hermes 自身 api_server platform 的访问密钥 ──
+# 只有暴露 Hermes 当 OpenAI 兼容 API 用时才需要
+HERMES_API_KEY=set-your-hermes-api-key-here
+
+# ── (可选) 其他常用 provider ──
+# OPENAI_API_KEY=sk-xxx
+# DEEPSEEK_API_KEY=sk-xxx
+# KIMI_API_KEY=sk-xxx
+# GLM_API_KEY=xxx.xxx
+# CLAUDE_API_KEY=sk-ant-xxx
+
+# ── (可选) 番茄小说 Cookie（如果用 fanqienovel-publishing skill）──
+# FANQIE_COOKIE=xxx
+
+# ── (可选) 抖音相关 ──
+# DOUYIN_COOKIE=xxx

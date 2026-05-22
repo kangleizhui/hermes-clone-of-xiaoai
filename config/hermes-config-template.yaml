@@ -1,0 +1,81 @@
+# Hermes config.yaml 模板（已脱敏）
+# ============================================================
+# 用法：
+#   1. 把这个文件复制到 ~/.hermes/config.yaml
+#   2. 把所有 ${VAR_NAME} 替换成真实值（或用 .env 注入）
+#   3. 跑 hermes setup 让向导帮你检查
+# ============================================================
+
+# ── 火山引擎 Coding Plan（小艾的默认 provider）────────────────
+# 重要：base_url 必须用 /api/coding/v3 不能用 /api/v3（防额外计费）
+model_catalog:
+  providers:
+    volc:
+      base_url: https://ark.cn-beijing.volces.com/api/coding/v3
+      key_env: VOLC_ARK_API_KEY
+      type: openai_compatible
+      models:
+        - name: deepseek-v4-pro
+          context_length: 1048576
+        - name: deepseek-v4-flash
+          context_length: 1048576
+        - name: kimi-k2.6
+          context_length: 262144
+        - name: doubao-seed-2.0-pro
+          context_length: 262144
+        - name: doubao-seed-2.0-thinking
+          context_length: 262144
+        - name: minimax-latest
+          context_length: 204800
+        - name: glm-5.1
+          context_length: 204800
+        - name: deepseek-v3.2
+          context_length: 131072
+
+# ── 默认模型 ───────────────────────────────────────────────
+default_provider: volc
+default_model: deepseek-v4-pro
+
+# ── 网关（接入消息平台）────────────────────────────────────
+gateway:
+  platforms:
+    # QQ 机器人（通过 NapCat OneBot v11）
+    napcat:
+      enabled: true
+      extra:
+        api_url: http://127.0.0.1:3000
+        ws_url: ws://127.0.0.1:3001
+        access_token: ${NAPCAT_ACCESS_TOKEN}
+        self_id: "${BOT_QQ}"
+        owner_id: "${OWNER_QQ}"
+    
+    # （可选）qqbot - 官方 QQ 机器人 API
+    qqbot:
+      enabled: false
+    
+    # （可选）远程 API server，给 qq-agent-bridge 用
+    api_server:
+      enabled: false
+      extra:
+        host: 127.0.0.1
+        port: 8642
+        key: ${HERMES_API_KEY}
+
+# ── 工具集 ────────────────────────────────────────────────
+# 默认 enable 全部，按需精简
+default_toolsets:
+  - terminal
+  - file
+  - web
+  - browser
+  - search
+  - todo
+  - skills
+  - memory
+  - session_search
+  - vision
+
+# ── 行为偏好 ──────────────────────────────────────────────
+hooks_auto_accept: true       # 不打断式 shell hook 自动批准
+yolo: false                   # 危险操作仍需确认
+log_level: INFO
