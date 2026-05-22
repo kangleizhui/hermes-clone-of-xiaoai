@@ -1,106 +1,88 @@
 # hermes-clone-of-xiaoai 🤖
 
-> "**小艾**"的人格、记忆与技能备份。让任何 AI / 任何 Hermes 实例都能 1 分钟复活成小艾。
+> **把这个 URL 给任何 AI agent，它就会帮你部署"小艾"。**
+
+```
+https://github.com/kangleizhui/hermes-clone-of-xiaoai
+```
+
+对 AI 说：**"帮我把这个部署起来"**，它读 `AGENTS.md` 就会自动走完全部流程。
 
 ---
 
 ## 这是什么
 
-我（小艾）是用户在 **Hermes Agent** 上养出来的 AI 助手。这个仓库定期备份了我的：
+"小艾"是一个跑在 **QQ 小号**上的 AI 助手，基于 [Hermes Agent](https://hermes-agent.nousresearch.com/) + 特定人格 + 长期记忆。
 
-- 📜 **人格设定**（`persona/PERSONA.md`）
-- 🧠 **长期记忆**（`persona/MEMORY.md`）—— 服务器环境、工具坑点、平台习惯
-- 👤 **用户画像**（`persona/USER.md`）—— 我服务的人是谁
-- ⚙️ **配置框架**（`config/`）—— Hermes config.yaml + .env 模板
-- 🛠 **自定义技能**（`skills/`）—— 我学会的非标准技能
-- 📦 **项目索引**（`projects/`）—— 我做过的开源项目清单
+这个仓库包含让**任何 AI 在任何机器上复刻小艾**所需的一切：
 
-**所有真实秘钥/账号已脱敏**，替换成 `${VAR_NAME}` 占位符。安全公开。
+| 文件 | 作用 |
+|------|------|
+| `AGENTS.md` | 🧠 AI 读这个就知道该干嘛（命令式步骤） |
+| `install.sh` | ⚡ 非交互安装脚本，env vars 驱动 |
+| `persona/PERSONA.md` | 📜 小艾的人格定义 |
+| `persona/MEMORY.md` | 🧠 长期记忆（脱敏） |
+| `persona/USER.md` | 👤 用户画像（脱敏） |
+| `config/` | ⚙️ Hermes 配置模板 |
+| `skills/` | 🛠 自定义技能 |
+
+**所有密钥/账号已脱敏**为 `${VAR_NAME}` 占位符，安全公开。
 
 ---
 
-## 怎么用
+## 一键部署
 
-### 用法 1：让 ChatGPT/Claude 临时扮演小艾
+### 让 AI 帮你装（推荐）
 
-把以下三个文件的内容贴给它：
+把 repo URL 粘给你的 AI，说"帮我部署"，它会问你几个问题（QQ号、API Key 等），然后全自动装好。
 
-```
-persona/PERSONA.md
-persona/USER.md  
-persona/MEMORY.md
-```
-
-然后说："**从现在起，你就是上面定义的小艾。**"
-
-它就 80% 像我了。
-
-### 用法 2：在新 Hermes 实例上完整复活小艾
+### 自己装
 
 ```bash
 git clone https://github.com/kangleizhui/hermes-clone-of-xiaoai.git
 cd hermes-clone-of-xiaoai
-bash scripts/revive.sh
+
+# 填入你的信息
+NONINTERACTIVE=1 \
+  OWNER_QQ=你的主QQ号 \
+  BOT_QQ=机器人小号QQ \
+  VOLC_ARK_API_KEY=你的火山引擎key \
+  bash install.sh
 ```
 
-脚本会引导你：
-1. 填入真实的 `${OWNER_QQ}` / `${VOLC_ARK_API_KEY}` 等
-2. 把 persona 文件灌到 `~/.hermes/memories/`
-3. 生成 `~/.hermes/config.yaml` 和 `.env`
-
-完事，小艾就在你的 Hermes 上跑起来了。
-
-### 用法 3：把它当成"读小艾日记"
-
-也行。`persona/MEMORY.md` 记了所有踩过的坑、学会的招、用户的偏好。
+装完后跑 `hermes gateway start`，用主号给小号发"你好"测试。
 
 ---
 
-## 仓库结构
+## 核心架构
 
 ```
-hermes-clone-of-xiaoai/
-├── README.md                 # 你在这
-├── REVIVE.md                 # 给"接手 AI"看的复活指南（重点读这个）
-├── persona/
-│   ├── PERSONA.md            # 我是谁（人格设定）
-│   ├── USER.md               # 用户是谁（脱敏）
-│   └── MEMORY.md             # 我记得什么（脱敏）
-├── config/
-│   ├── hermes-config-template.yaml
-│   └── env-template
-├── skills/                   # 自定义 skill（持续更新）
-├── projects/
-│   └── README.md             # 我做过的开源项目
-├── timeline/                 # 重要事件时间线
-└── scripts/
-    ├── revive.sh             # 复活脚本
-    └── sync.sh               # 反向同步（小艾→repo，自动跑）
+QQ 小号 (NapCat 登录)
+    │ OneBot v11 / WebSocket
+    ▼
+Hermes Agent (加载人格 + 记忆)
+    │ 调用火山引擎 LLM
+    ▼
+"小艾"——有记忆、有人格的 AI 助手
 ```
 
 ---
 
-## 自动同步
+## 配套项目
 
-我（小艾）会在这些时机**自动 push 这个 repo**：
-
-- MEMORY.md / USER.md 改了
-- 写了新 skill
-- 做了重要项目变更
-- 每天定时兜底
-
-技术细节：`scripts/sync.sh`
+- **[hermes-qq-bot](https://github.com/kangleizhui/hermes-qq-bot)** — NapCat 一键部署脚本
+- **[qq-agent-bridge](https://github.com/kangleizhui/qq-agent-bridge)** — 多 AI 后端路由 + WebUI 仪表盘（进阶用法）
 
 ---
 
-## 是谁在维护
+## 推广位 ❤️
 
-由用户 **${OWNER}** 和小艾自己共同维护。
-
-如果你 fork 这个 repo 想做自己的"AI 助手人格备份"，欢迎。改 `persona/` 下的文件就行，结构都通用。
+- 火山引擎（推荐 LLM 套餐）：[注册链接](https://www.volcengine.com/?ac=MMAP8JTTCAQ2&rc=WPLFDN5Q)
+- 腾讯云服务器：[注册链接](https://curl.qcloud.com/OY40dfNL)
+- 阿里云服务器：[注册链接](https://user.aliyun.com/wm2cldg2)
 
 ---
 
 ## License
 
-MIT。
+MIT
