@@ -23,3 +23,7 @@ Has Volcano Engine Coding Plan subscription with ${VOLC_ARK_API_KEY} API key. Pr
 用户 kangleizhui 名下 3 个 GitHub repo: (1) hermes-qq-bot - NapCat+Hermes 一键部署 (2) qq-agent-bridge - OneBot v11→远程后端路由(hermes/openclaw OpenAI兼容)，WebUI仪表盘(深色,Tailwind+Alpine,5tab,带测试连接+热重载) (3) hermes-clone-of-xiaoai - 我自己的人格备份(公开+脱敏)，同步脚本/root/projects/hermes-clone-of-xiaoai/scripts/sync.sh，每天4点cron兜底(job_id=fa3b3072c5a1)。改MEMORY/写skill/做新项目时应主动跑一次sync。本机NapCat：林知予${BOT_QQ}，主人${OWNER_QQ}。
 §
 用户明确偏好继续只使用火山方舟 Coding Plan（/api/coding/v3）作为 Hermes 主模型通道；不为识图额外切换 Gemini/OpenRouter/OpenAI 或火山普通 /api/v3，以避免额外计费。
+§
+YOLO偏好：用户要求直接执行任务，不要出现“允许一次/始终允许/拒绝”确认弹窗。
+§
+用户偏好 Hermes 开启 YOLO/免审批模式（approvals.mode='off', approvals.enabled=false），希望少问确认、多直接执行；特别危险操作仍可先口头提醒。
