@@ -18,6 +18,8 @@ Server has remote browser setup: Xvfb :99, Chromium visible via noVNC (CDP port 
 §
 Has Volcano Engine Coding Plan subscription with ${VOLC_ARK_API_KEY} API key. Provider name in config: 'volc' under model_catalog.providers. Prefers concise, direct answers over long explanations or complex automation scripts.
 §
-火山引擎 Coding Plan 配置：provider=custom, base_url=https://ark.cn-beijing.volces.com/api/coding/v3, api_key=VOLC_ARK_API_KEY (在.env中)。默认模型 deepseek-v4-pro。在 Hermes config.yaml 的 providers.volc 下配了各模型 context_length：deepseek-v4-pro/flash=1024k, kimi-k2.6=256k, doubao-seed-2.0-*=256k, minimax-latest=200k, glm-5.1=200k, deepseek-v3.2=128k。注意不能使用 /api/v3 路径（会产生额外费用），必须用 /api/coding/v3。
+火山引擎 Coding Plan 配置：provider=custom, base_url=https://ark.cn-beijing.volces.com/api/coding/v3, api_key=VOLC_ARK_API_KEY (在.env中)。默认模型 deepseek-v4-pro。在 Hermes config.yaml 的 providers.volc 下配了各模型 context_length：deepseek-v4-pro/flash=1024k, kimi-k2.6=256k, doubao-seed-2.0-*=256k, minimax-m2.7=200k, glm-5.1=200k, deepseek-v3.2=128k。注意不能使用 /api/v3 路径（会产生额外费用），必须用 /api/coding/v3。
 §
-用户 kangleizhui 名下开源 QQ 机器人项目：(1) github.com/kangleizhui/hermes-qq-bot — NapCat+Hermes 一键部署；(2) github.com/kangleizhui/qq-agent-bridge — OneBot v11→4后端路由（hermes/openclaude/claude-code/openai），WebUI仪表盘（5 tab：概览/后端配置/连接配置/权限管理/会话），配置保存API按section分块，脱敏字段("***")不覆盖原值，3种生效方式（热重载/重启/手动）。本机测试实例端口8080，config=config.test.yaml。本机NapCat：林知予${BOT_QQ}，主人${OWNER_QQ}，systemd napcat.service。
+用户 kangleizhui 名下 3 个 GitHub repo: (1) hermes-qq-bot - NapCat+Hermes 一键部署 (2) qq-agent-bridge - OneBot v11→远程后端路由(hermes/openclaw OpenAI兼容)，WebUI仪表盘(深色,Tailwind+Alpine,5tab,带测试连接+热重载) (3) hermes-clone-of-xiaoai - 我自己的人格备份(公开+脱敏)，同步脚本/root/projects/hermes-clone-of-xiaoai/scripts/sync.sh，每天4点cron兜底(job_id=fa3b3072c5a1)。改MEMORY/写skill/做新项目时应主动跑一次sync。本机NapCat：林知予${BOT_QQ}，主人${OWNER_QQ}。
+§
+用户明确偏好继续只使用火山方舟 Coding Plan（/api/coding/v3）作为 Hermes 主模型通道；不为识图额外切换 Gemini/OpenRouter/OpenAI 或火山普通 /api/v3，以避免额外计费。

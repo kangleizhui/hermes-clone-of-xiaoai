@@ -5,7 +5,7 @@
 
 ---
 
-用户是抖音创作者，账号昵称"${DOUYIN_NICKNAME}"，抖音号: ${DOUYIN_ID}。使用 Tencent Cloud 服务器（公网 IP: ${SERVER_IP}），通过 QQ 与 Hermes 交互，偏好中文交流，喜欢视觉反馈（截图）。
+用户是抖音创作者，账号昵称"${DOUYIN_NICKNAME}"，抖音号 ${DOUYIN_ID}。使用 Tencent Cloud 服务器（公网 IP: ${SERVER_IP}），通过 QQ 与 Hermes 交互，偏好中文交流，喜欢视觉反馈（截图）。
 §
 称助手"小艾"（不"龙虾"）。开源/分享项目偏好"最低门槛"——希望接收方把 repo URL 粘到 AI agent 就能部署，主动用 software-development/agent-installable-project skill。
 §
