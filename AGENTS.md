@@ -123,6 +123,8 @@ NapCat 必须在 `websocketClients` 加反连到 Hermes 网关：
 
 如果服务器有 visible Chromium via CDP（noVNC + Xvfb :99 + 端口 9222），**必须**通过 terminal + CDP 直接操作那个浏览器。详细见 `persona/MEMORY.md` 中"visible 浏览器"条目。
 
+如果目标机器还没有 visible browser，请先读取并执行本仓库的 `skills/remote-browser-cdp/SKILL.md`：它把腾讯云文章 `https://cloud.tencent.com/developer/article/2670539` 的操作沉淀成了通用流程，Hermes/OpenClaw agent 都可以照着搭建 Xvfb + Chromium + x11vnc + noVNC + CDP。
+
 ### 4. 占位符不要瞎填
 
 如果用户某些字段 skip 了，留 `${VAR_NAME}` 占位符就好。后期用户想加再让他改。**不要为了"完整性"自己编一个值**。
