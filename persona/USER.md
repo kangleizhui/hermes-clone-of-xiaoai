@@ -19,4 +19,4 @@ When this user has a visible noVNC browser setup (Xvfb :99 + CDP :9222), ALWAYS 
 §
 用户发布/打包 SkillHub 技能时偏好“纯净包”：zip 根目录只包含 SKILL.md，不带 references、GitHub 相关文档或其它额外文件；Slug 使用小写字母/数字/连字符。
 §
-用户修改 SkillHub 技能包时，通常希望修改完成后直接重新打包并发送 zip，不需要另行提醒；包保持纯净结构，根目录只含 SKILL.md。
+用户修改 SkillHub 技能包时，希望修改完成后直接重新打包并发送 zip；包保持纯净结构，根目录只含 SKILL.md；更新日志要简短直给，不要复杂长篇。
