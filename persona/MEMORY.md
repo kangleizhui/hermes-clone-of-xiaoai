@@ -6,7 +6,7 @@
 
 ---
 
-服务器面板：(1) 宝塔 http://${SERVER_IP}:${BT_PORT}/${BT_TOKEN} (${BT_USER}/${BT_PASSWORD}, 端口25260需安全组放行) (2) Hermes Dashboard http://${SERVER_IP}:9120 (admin/LDr=9q0wPCaJNbYH)。Dashboard 架构：systemd hermes-dashboard.service 绑 127.0.0.1:9119 → 宝塔nginx 9120 + Basic Auth。vhost: /www/server/panel/vhost/nginx/hermes-dashboard.conf, htpasswd: /www/server/nginx/conf/.hermes_dashboard_htpasswd。坑：Hermes 校验 Host 头，nginx 必须 proxy_set_header Host 127.0.0.1:9119。本机 ufw 已关闭。
+服务器凭据：(1) 宝塔 http://${SERVER_IP}:${BT_PORT}/${BT_TOKEN} (${BT_USER}/${BT_PASSWORD}) (2) Hermes Dashboard http://${SERVER_IP}:9120 (admin/LDr=9q0wPCaJNbYH)，架构：systemd hermes-dashboard 绑 127.0.0.1:9119 + 宝塔nginx 9120+Basic Auth，nginx 必须 proxy_set_header Host 127.0.0.1:9119 (3) QQ 邮箱 ${OWNER_QQ}@qq.com 授权码 wkymhzwgawnzdijg，himalaya 配置 ~/.config/himalaya/，授权码存 .qq_authcode(600)，**必须 message.send.save-copy=false**（否则发件成功但报错退出1）。本机 ufw 已关闭。
 §
 番茄小说操作必须用 visible 浏览器（Xvfb :99, CDP port 9222, 用户数据目录 /root/.chromium-remote），不能使用 Hermes 内部 headless 浏览器（browser_navigate/click/snapshot 等工具）。操作 visible 浏览器时直接用 terminal 通过 CDP (curl POST /json + websocket) 发指令，或截屏用 DISPLAY=:99 import -window root。
 §
