@@ -137,7 +137,13 @@ if git diff --quiet && git diff --cached --quiet; then
 fi
 
 git add -A
-COMMIT_MSG="${1:-chore: 小艾自动同步 $(date +%Y-%m-%d\ %H:%M)}"
+# 注意：$1 可能是 --quiet/--dry 这种选项，不能直接当 commit message
+# 只有非选项参数才视作自定义 message
+if [ -n "$1" ] && [[ "$1" != --* ]]; then
+    COMMIT_MSG="$1"
+else
+    COMMIT_MSG="chore: 小艾自动同步 $(date +%Y-%m-%d\ %H:%M)"
+fi
 git commit -m "$COMMIT_MSG" 2>&1 | tail -3
 git push origin main 2>&1 | tail -3
 log "  ✓ pushed"
