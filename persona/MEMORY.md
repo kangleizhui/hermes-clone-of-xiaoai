@@ -6,15 +6,11 @@
 
 ---
 
-宝塔面板已安装，外网地址: http://${SERVER_IP}:${BT_PORT}/${BT_TOKEN}，用户名 ${BT_USER}，密码 ${BT_PASSWORD}。端口25260需要在腾讯云安全组放行。
+服务器面板：(1) 宝塔 http://${SERVER_IP}:${BT_PORT}/${BT_TOKEN} (${BT_USER}/${BT_PASSWORD}, 端口25260需安全组放行) (2) Hermes Dashboard http://${SERVER_IP}:9120 (admin/LDr=9q0wPCaJNbYH)。Dashboard 架构：systemd hermes-dashboard.service 绑 127.0.0.1:9119 → 宝塔nginx 9120 + Basic Auth。vhost: /www/server/panel/vhost/nginx/hermes-dashboard.conf, htpasswd: /www/server/nginx/conf/.hermes_dashboard_htpasswd。坑：Hermes 校验 Host 头，nginx 必须 proxy_set_header Host 127.0.0.1:9119。本机 ufw 已关闭。
 §
 番茄小说操作必须用 visible 浏览器（Xvfb :99, CDP port 9222, 用户数据目录 /root/.chromium-remote），不能使用 Hermes 内部 headless 浏览器（browser_navigate/click/snapshot 等工具）。操作 visible 浏览器时直接用 terminal 通过 CDP (curl POST /json + websocket) 发指令，或截屏用 DISPLAY=:99 import -window root。
 §
-Server visible browser: Xvfb :99 + Chromium/noVNC at http://${SERVER_IP}:6080/vnc.html, CDP :9222, x11vnc :5900, profile /root/.chromium-remote. Hermes browser_* is separate. User expects /vnc.html. SkillHub login may fail due Tencent risk checks.
-§
 小说创作偏好：都市现实情感（坦克风格）——普通底层男主（非富二代），第一人称男性视角，现实主义，慢节奏细节描写，虐心带黑色幽默。标题偏好"渣男口吻"（漫不经心但句句扎心）。上次创作《你好，顾欣欣》（深圳外卖骑手×旧情人重逢，男主贵州/女主云南）。
-§
-用户写小说时偏好"渣男口吻"的书名——听起来漫不经心、像随口起的，但字底下有东西。例：《其实我过得还行》《不说了，有单》《你好，顾欣欣》。不要文艺腔、不要土嗨感。"
 §
 Has Volcano Engine Coding Plan subscription with ${VOLC_ARK_API_KEY} API key. Provider name in config: 'volc' under model_catalog.providers. Prefers concise, direct answers over long explanations or complex automation scripts.
 §
