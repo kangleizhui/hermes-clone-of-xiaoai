@@ -34,7 +34,7 @@ for arg in "$@"; do
     esac
 done
 
-log() { [ "$QUIET" = false ] && echo "$@"; }
+log() { [ "$QUIET" = false ] && echo "$@"; return 0; }
 
 # 真实值（从环境或 .env 读，硬编码作为兜底——这些是当前实例的实际值）
 : ${OWNER_QQ:=2556208918}
