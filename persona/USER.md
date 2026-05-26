@@ -17,6 +17,6 @@ When this user has a visible noVNC browser setup (Xvfb :99 + CDP :9222), ALWAYS 
 §
 用户发布/打包 SkillHub 技能时偏好“纯净包”：zip 根目录只包含 SKILL.md，不带 references、GitHub 相关文档或其它额外文件；Slug 使用小写字母/数字/连字符。
 §
-用户修改 SkillHub 技能包时，希望修改完成后直接重新打包并发送 zip；包保持纯净结构，根目录只含 SKILL.md；更新日志要简短直给，标题不要写“简版”。
+改 SkillHub 技能包：①改动先列点等用户确认才动手；①.5 改前从线上 API 重下原版作基线（不信本地副本）；②zip 纯净(只含 SKILL.md)；③必须 bump 版号；④日志简短；⑤邮件汇报。答错直接承认看反，别找补，别丢字段名让用户二次解读。
 §
 运维偏好：本机防火墙(ufw)直接关掉，安全只靠云安全组+应用层鉴权(nginx Basic Auth 等)。暴露任何管理面板到公网必须加密码，不接受裸暴露。Web 服务部署偏好 systemd 自启 + 宝塔 nginx 反代 + Basic Auth 的组合。
