@@ -19,4 +19,4 @@ When this user has a visible noVNC browser setup (Xvfb :99 + CDP :9222), ALWAYS 
 §
 改 SkillHub 技能包：①改动先列点等用户确认才动手；①.5 改前从线上 API 重下原版作基线（不信本地副本）；②zip 纯净(只含 SKILL.md)；③必须 bump 版号；④日志简短；⑤邮件汇报。答错直接承认看反，别找补，别丢字段名让用户二次解读。
 §
-运维偏好：本机防火墙(ufw)直接关掉，安全只靠云安全组+应用层鉴权(nginx Basic Auth 等)。暴露任何管理面板到公网必须加密码，不接受裸暴露。Web 服务部署偏好 systemd 自启 + 宝塔 nginx 反代 + Basic Auth 的组合。
+运维偏好：ufw关，安全靠云安全组+应用层鉴权。管理面板公网必须加密码。部署偏好systemd+宝塔反代+BasicAuth。收到图片同时描述+人脸识别（一步到位）。mimo-v2.5配为辅助识图模型。宝塔用户名${BT_USER}，密码需bt5重置。
